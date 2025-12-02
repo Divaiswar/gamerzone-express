@@ -1,73 +1,44 @@
-<<<<<<< HEAD
-const express = require('express');
-const path = require('path');
-const app = express();
-
-// Middleware to read JSON body
-app.use(express.json());
-
-// Serve the frontend (index.html and assets)
-app.use(express.static(__dirname));
-
-// Root Route - show HTML UI
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Receive order data + rating
-app.post('/save-order', (req, res) => {
-    console.log("Order Received:", req.body);
-    return res.json({ message: "Order successful! 🚚🎮", status: "success" });
-});
-
-// Render must use its assigned PORT
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-=======
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected 🚀"))
-  .catch(err => console.error("MongoDB Error ❌", err));
+// MongoDB Connection
+const uri = process.env.MONGODB_URI;
+mongoose.connect(uri)
+  .then(() => console.log("MongoDB Connected ✔"))
+  .catch((err) => console.log("MongoDB Error ❌", err));
 
-app.use(express.static(__dirname));
-
-// Schema for orders
-const OrderSchema = new mongoose.Schema({
-  game: String,
-  deliveryType: String,
-  feedback: String,
+// Schema + Model
+const orderSchema = new mongoose.Schema({
+  name: String,
+  email: String,
   rating: Number,
-  date: { type: Date, default: Date.now }
+  feedback: String
 });
 
-const Order = mongoose.model('orders', OrderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
-// Save order API
-app.post('/save-order', async (req, res) => {
+// Test route (optional)
+app.get("/", (req, res) => {
+  res.send("Server is working! 👍");
+});
+
+// Save data from frontend
+app.post("/save-order", async (req, res) => {
   try {
-    const newOrder = new Order(req.body);
-    await newOrder.save();
-    res.json({ message: "Order saved successfully!" });
+    const data = new Order(req.body);
+    await data.save();
+    res.json({ success: true, message: "Order saved" });
   } catch (err) {
-    res.status(500).json({ error: "Failed to save order" });
+    res.json({ success: false, message: err.message });
   }
 });
 
-// Load index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "Index.html"));
+const port = process.env.PORT || 10000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server running on port ${port}`));
->>>>>>> 89cc6e5ca174e0e4b21f42023fa1c83355cb9a1e

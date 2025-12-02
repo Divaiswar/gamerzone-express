@@ -1,35 +1,33 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GamerZone Express – Game Delivery</title>
+  <title>GamerZone Express</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #f97316;
       --bg: #020617;
       --card-bg: #0b1220;
-      --accent: #22c55e;
-      --accent-soft: rgba(34, 197, 94, 0.1);
-      --accent-strong: #4ade80;
-      --primary: #6366f1;
-      --primary-soft: rgba(99, 102, 241, 0.12);
       --text-main: #e5e7eb;
       --text-muted: #9ca3af;
-      --danger: #f97373;
+      --radius-lg: 20px;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.6);
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #1d4ed8 0, #020617 45%);
+      background: radial-gradient(circle at top, #1d4ed8 0, #020617 55%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -37,1249 +35,611 @@
       color: var(--text-main);
     }
 
-    .app-shell {
+    .app {
       width: 100%;
       max-width: 1100px;
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 24px;
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
       display: grid;
-      grid-template-columns: 3fr 2fr;
+      grid-template-columns: 3fr 2.2fr;
       overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.6);
     }
 
-    /* LEFT – HERO  */
-    .left-panel {
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LEFT: INFO */
+    .left {
       padding: 28px 32px;
       border-right: 1px solid rgba(148, 163, 184, 0.25);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
     }
 
-    .brand-row {
+    .logo-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .logo-wrap {
+    .logo {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .logo-circle {
+    .logo-icon {
       width: 40px;
       height: 40px;
       border-radius: 999px;
-      background: conic-gradient(from 180deg, #22c55e, #6366f1, #f97316, #22c55e);
+      background: radial-gradient(circle at 30% 20%, #f97316, #22c55e, #38bdf8);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #020617;
       font-weight: 800;
+      color: #020617;
       font-size: 20px;
     }
 
     .logo-text-main {
       font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
 
-    .logo-text-sub {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .online-pill {
+    .tag {
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(22, 163, 74, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.7);
+      background: rgba(56, 189, 248, 0.12);
       font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      color: #7dd3fc;
     }
 
-    .online-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-    }
-
-    .hero-title {
-      font-size: 32px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .hero-title span {
-      color: var(--accent-strong);
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      max-width: 420px;
-      line-height: 1.5;
-    }
-
-    .perk-row {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .perk-pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .glow-strip {
-      margin-top: 20px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      background: radial-gradient(circle at left, rgba(34, 197, 94, 0.35), transparent 55%);
-      border: 1px solid rgba(34, 197, 94, 0.5);
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .glow-icon {
-      font-size: 16px;
-    }
-
-    .footer-note {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 18px;
-    }
-
-    /* RIGHT – FORM  */
-    .right-panel {
-      padding: 28px 26px;
-      background: radial-gradient(circle at top right, #4f46e5 0, #020617 55%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 380px;
-      background: #020617;
-      border-radius: 18px;
-      padding: 18px 18px 16px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
-      color: var(--text-main);
-    }
-
-    .card-header {
-      margin-bottom: 10px;
-    }
-
-    .card-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 3px;
-    }
-
-    .card-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .field-group {
+    .headline {
       margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    label {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    input[type="text"],
-    select,
-    textarea {
-      background: #020617;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      border-radius: 10px;
-      padding: 7px 9px;
-      font-size: 12px;
-      color: var(--text-main);
-      outline: none;
-    }
-
-    input[type="text"]:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.4);
-    }
-
-    textarea {
-      min-height: 60px;
-      resize: vertical;
-    }
-
-    .delivery-options {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .delivery-pill {
-      flex: 1;
-      min-width: 120px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 6px 10px;
-      font-size: 11px;
-      text-align: center;
-      cursor: pointer;
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .delivery-pill.selected {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      font-weight: 600;
-    }
-
-    .stars-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 3px;
-    }
-
-    .star {
-      font-size: 18px;
-      cursor: pointer;
-      color: #4b5563;
-      transition: transform 0.1s, color 0.15s;
-    }
-
-    .star.active,
-    .star:hover {
-      color: #facc15;
-      transform: scale(1.1);
-    }
-
-    .submit-row {
-      margin-top: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .btn-submit {
-      border: none;
-      border-radius: 999px;
-      padding: 9px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      background: linear-gradient(135deg, var(--primary), #4338ca);
-      color: #e5e7eb;
-      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6);
-    }
-
-    .hint {
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-
-    .error-text {
-      font-size: 11px;
-      color: var(--danger);
-      margin-top: 2px;
-    }
-
-    /* THANK YOU ANIMATION */
-    .thank-you-box {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(129, 140, 248, 0.6);
-      font-size: 12px;
-      display: none;
-    }
-
-    .thank-you-box.show {
-      display: block;
-      animation: popIn 0.5s ease-out forwards;
-    }
-
-    .thank-title {
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .thank-emoji {
-      font-size: 16px;
-      animation: bounce 0.8s infinite alternate;
-    }
-
-    .delivery-line {
-      margin-top: 2px;
-      color: var(--accent-strong);
-    }
-
-    .fade-small {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    @keyframes popIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes bounce {
-      from {
-        transform: translateY(0);
-      }
-      to {
-        transform: translateY(-2px);
-      }
-    }
-
-    @media (max-width: 880px) {
-      .app-shell {
-        grid-template-columns: 1fr;
-      }
-      .left-panel {
-        border-right: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      }
-      body {
-        padding: 16px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="app-shell">
-    <!-- LEFT SIDE -->
-    <section class="left-panel">
-      <div>
-        <div class="brand-row">
-          <div class="logo-wrap">
-            <div class="logo-circle">GZ</div>
-            <div>
-              <div class="logo-text-main">GamerZone Express</div>
-              <div class="logo-text-sub">Premium Game Delivery</div>
-            </div>
-          </div>
-          <div class="online-pill">
-            <span class="online-dot"></span>
-            Live orders tracking enabled
-          </div>
-        </div>
-
-        <h1 class="hero-title">
-          Get your favourite games<br />
-          <span>delivered to your setup.</span>
-        </h1>
-        <p class="hero-subtitle">
-          Choose from top titles or enter your own game, pick how you want it
-          delivered, and we’ll handle the rest. Feedback and ratings help us
-          level up your next order.
-        </p>
-
-        <div class="perk-row">
-          <span class="perk-pill">✔ Genuine game copies</span>
-          <span class="perk-pill">🚚 Pan-India doorstep delivery</span>
-          <span class="perk-pill">⭐ Community-rated service</span>
-        </div>
-
-        <div class="glow-strip">
-          <span class="glow-icon">🎮</span>
-          <span>“One-stop shop for all my PC and console games.” – Verified Gamer</span>
-        </div>
-      </div>
-
-      <p class="footer-note">
-        Tip: After you place the order, you’ll instantly see a random estimated
-        delivery date (usually around 5 days) and a thank-you animation.
-      </p>
-    </section>
-
-    <!-- RIGHT SIDE – FORM -->
-    <section class="right-panel">
-      <div class="card">
-        <header class="card-header">
-          <div class="card-title">Place your game order</div>
-          <div class="card-subtitle">
-            Select a title, delivery format, share feedback & rate us.
-          </div>
-        </header>
-
-        <form id="orderForm">
-          <div class="field-group">
-            <div class="field">
-              <label for="gameSelect">Choose a game</label>
-              <select id="gameSelect" required>
-                <option value="">-- Select a game --</option>
-                <option>GTA V</option>
-                <option>FIFA 24</option>
-                <option>Call of Duty: Warzone</option>
-                <option>Minecraft</option>
-                <option>Red Dead Redemption 2</option>
-                <option>God of War</option>
-                <option>Spider-Man Remastered</option>
-                <option>PUBG PC</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label for="customGame">Or type your game (optional)</label>
-              <input id="customGame" type="text" placeholder="Eg: Elden Ring, Valorant" />
-            </div>
-
-            <div class="field">
-              <label>Delivery format</label>
-              <div class="delivery-options">
-                <button type="button" class="delivery-pill selected" data-value="Blu-Ray Disc">
-                  Blu-Ray Disc
-                </button>
-                <button type="button" class="delivery-pill" data-value="USB Drive Installation">
-                  USB Drive Installation
-                </button>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="feedback">Feedback for GamerZone Express</label>
-              <textarea id="feedback" placeholder="Tell us anything we should know…"></textarea>
-            </div>
-
-            <div class="field">
-              <label>Rate your experience (stars)</label>
-              <div class="stars-row" id="starsRow">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-              </div>
-              <div class="hint">Click to select 1–5 stars. Your rating is stored in our system.</div>
-            </div>
-          </div>
-
-          <input type="hidden" id="deliveryType" value="Blu-Ray Disc" />
-          <input type="hidden" id="ratingValue" value="0" />
-
-          <div id="errorBox" class="error-text" style="display:none;"></div>
-
-          <div class="submit-row">
-            <button type="submit" class="btn-submit">Place order & save to database</button>
-            <div class="hint">
-              Your order details, feedback, and rating will be stored securely and only
-              visible to admin.
-            </div>
-          </div>
-
-          <div id="thankBox" class="thank-you-box">
-            <div class="thank-title">
-              <span class="thank-emoji">✨</span>
-              <span>Thanks for buying from GamerZone Express!</span>
-            </div>
-            <div class="delivery-line" id="deliveryLine"></div>
-            <div class="fade-small">We’ve saved your order and rating in our system.</div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("orderForm");
-      const deliveryButtons = document.querySelectorAll(".delivery-pill");
-      const deliveryTypeInput = document.getElementById("deliveryType");
-      const ratingInput = document.getElementById("ratingValue");
-      const stars = document.querySelectorAll(".star");
-      const thankBox = document.getElementById("thankBox");
-      const deliveryLine = document.getElementById("deliveryLine");
-      const errorBox = document.getElementById("errorBox");
-
-      // Delivery format selection
-      deliveryButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          deliveryButtons.forEach((b) => b.classList.remove("selected"));
-          btn.classList.add("selected");
-          deliveryTypeInput.value = btn.getAttribute("data-value");
-        });
-      });
-
-      // Star rating selection
-      stars.forEach((star) => {
-        star.addEventListener("click", () => {
-          const value = parseInt(star.getAttribute("data-value"), 10);
-          ratingInput.value = value;
-          stars.forEach((s) => {
-            const v = parseInt(s.getAttribute("data-value"), 10);
-            if (v <= value) {
-              s.classList.add("active");
-            } else {
-              s.classList.remove("active");
-            }
-          });
-        });
-      });
-
-      function getRandomEstimatedDelivery() {
-        // random between 3 and 7 days (around 5)
-        const days = Math.floor(Math.random() * 5) + 3; // 3–7
-        const now = new Date();
-        const eta = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
-        const dateStr = eta.toLocaleDateString();
-        return { days, dateStr };
-      }
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        errorBox.style.display = "none";
-        errorBox.textContent = "";
-
-        const gameSelect = document.getElementById("gameSelect");
-        const customGame = document.getElementById("customGame");
-        const feedback = document.getElementById("feedback");
-
-        if (!gameSelect.value && !customGame.value.trim()) {
-          errorBox.textContent = "Please select a game or type one in the box.";
-          errorBox.style.display = "block";
-          return;
-        }
-
-        if (ratingInput.value === "0") {
-          errorBox.textContent = "Please give us a star rating before placing your order.";
-          errorBox.style.display = "block";
-          return;
-        }
-
-        const { days, dateStr } = getRandomEstimatedDelivery();
-
-        const payload = {
-          gameSelected: gameSelect.value || null,
-          customGame: customGame.value.trim() || null,
-          deliveryType: deliveryTypeInput.value,
-          feedback: feedback.value.trim() || null,
-          ratingStars: parseInt(ratingInput.value, 10),
-          estimatedDeliveryDays: days,
-          estimatedDeliveryDate: dateStr,
-          createdAt: new Date().toISOString()
-        };
-
-        fetch("/save-data", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        })
-          .then((res) => res.json())
-          .then((response) => {
-            // Show animated thank-you box
-            deliveryLine.textContent =
-              "Estimated delivery: about " +
-              days +
-              " day(s), around " +
-              dateStr +
-              ".";
-            thankBox.classList.add("show");
-            alert(response.message || "Order saved successfully!");
-            // Optionally reset some fields
-            // form.reset(); ratingInput.value = 0; stars.forEach(s => s.classList.remove("active"));
-          })
-          .catch((err) => {
-            console.error("Error:", err);
-            errorBox.textContent =
-              "Something went wrong while saving your order. Please try again.";
-            errorBox.style.display = "block";
-          });
-      });
-    });
-  </script>
-</body>
-</html>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>GamerZone Express – Game Delivery</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    :root {
-      --bg: #020617;
-      --card-bg: #0b1220;
-      --accent: #22c55e;
-      --accent-soft: rgba(34, 197, 94, 0.1);
-      --accent-strong: #4ade80;
-      --primary: #6366f1;
-      --primary-soft: rgba(99, 102, 241, 0.12);
-      --text-main: #e5e7eb;
-      --text-muted: #9ca3af;
-      --danger: #f97373;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      background: radial-gradient(circle at top, #1d4ed8 0, #020617 45%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-      color: var(--text-main);
-    }
-
-    .app-shell {
-      width: 100%;
-      max-width: 1100px;
-      background: rgba(15, 23, 42, 0.96);
-      border-radius: 24px;
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.6);
-    }
-
-    /* LEFT – HERO  */
-    .left-panel {
-      padding: 28px 32px;
-      border-right: 1px solid rgba(148, 163, 184, 0.25);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: conic-gradient(from 180deg, #22c55e, #6366f1, #f97316, #22c55e);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #020617;
+      font-size: 30px;
       font-weight: 800;
-      font-size: 20px;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
     }
 
-    .logo-text-main {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+    .headline span {
+      color: #a5b4fc;
     }
 
-    .logo-text-sub {
-      font-size: 11px;
+    .sub {
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .points {
+      margin-top: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .point {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
       color: var(--text-muted);
     }
 
-    .online-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(22, 163, 74, 0.15);
-      border: 1px solid rgba(34, 197, 94, 0.7);
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .online-dot {
+    .point-bullet {
       width: 8px;
       height: 8px;
       border-radius: 999px;
       background: #22c55e;
     }
 
-    .hero-title {
-      font-size: 32px;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .hero-title span {
-      color: var(--accent-strong);
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      max-width: 420px;
-      line-height: 1.5;
-    }
-
-    .perk-row {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .perk-pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .glow-strip {
-      margin-top: 20px;
-      padding: 10px 14px;
-      border-radius: 16px;
-      background: radial-gradient(circle at left, rgba(34, 197, 94, 0.35), transparent 55%);
-      border: 1px solid rgba(34, 197, 94, 0.5);
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .glow-icon {
-      font-size: 16px;
-    }
-
-    .footer-note {
-      font-size: 12px;
-      color: var(--text-muted);
+    .games-list {
       margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
-    /* RIGHT – FORM  */
-    .right-panel {
-      padding: 28px 26px;
-      background: radial-gradient(circle at top right, #4f46e5 0, #020617 55%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .games-list strong {
+      color: #e5e7eb;
     }
 
-    .card {
-      width: 100%;
-      max-width: 380px;
-      background: #020617;
-      border-radius: 18px;
-      padding: 18px 18px 16px;
+    /* RIGHT: FORM */
+    .right {
+      padding: 28px 24px;
+      background: radial-gradient(circle at top, #312e81 0, #020617 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glow-orb {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.4), transparent);
+      top: -80px;
+      right: -40px;
+      pointer-events: none;
+    }
+
+    .form-card {
+      position: relative;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius-lg);
+      padding: 20px 18px;
+      box-shadow: var(--shadow-soft);
       border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
-      color: var(--text-main);
+      backdrop-filter: blur(10px);
     }
 
-    .card-header {
+    .form-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .form-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
       margin-bottom: 10px;
     }
 
-    .card-title {
-      font-size: 17px;
-      font-weight: 700;
-      margin-bottom: 3px;
-    }
-
-    .card-subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .field-group {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+    @media (max-width: 900px) {
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     label {
       font-size: 11px;
-      color: var(--text-muted);
+      color: #9ca3af;
+      display: block;
+      margin-bottom: 3px;
     }
 
     input[type="text"],
+    input[type="number"],
     select,
     textarea {
-      background: #020617;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      border-radius: 10px;
+      width: 100%;
       padding: 7px 9px;
-      font-size: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
       color: var(--text-main);
+      font-size: 12px;
       outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
 
-    input[type="text"]:focus,
+    input:focus,
     select:focus,
     textarea:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.4);
+      background: rgba(15, 23, 42, 0.98);
     }
 
     textarea {
-      min-height: 60px;
       resize: vertical;
+      min-height: 60px;
     }
 
-    .delivery-options {
+    .radio-row {
       display: flex;
-      gap: 10px;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
       flex-wrap: wrap;
-      margin-top: 4px;
+      margin-bottom: 10px;
     }
 
-    .delivery-pill {
-      flex: 1;
-      min-width: 120px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 6px 10px;
-      font-size: 11px;
-      text-align: center;
-      cursor: pointer;
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .delivery-pill.selected {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      font-weight: 600;
-    }
-
-    .stars-row {
+    .radio-option {
       display: flex;
       align-items: center;
       gap: 6px;
-      margin-top: 3px;
+    }
+
+    .stars-row {
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+      font-size: 20px;
+      cursor: pointer;
     }
 
     .star {
-      font-size: 18px;
-      cursor: pointer;
       color: #4b5563;
       transition: transform 0.1s, color 0.15s;
     }
 
-    .star.active,
-    .star:hover {
+    .star.active {
       color: #facc15;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     .submit-row {
-      margin-top: 12px;
+      margin-top: 6px;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .btn-submit {
       border: none;
       border-radius: 999px;
-      padding: 9px 14px;
+      padding: 9px 18px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #e5e7eb;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      background: linear-gradient(135deg, var(--primary), #4338ca);
-      color: #e5e7eb;
-      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .hint {
+    .btn-submit span.icon {
+      font-size: 14px;
+    }
+
+    .note {
       font-size: 10px;
       color: var(--text-muted);
     }
 
-    .error-text {
-      font-size: 11px;
-      color: var(--danger);
-      margin-top: 2px;
-    }
-
-    /* THANK YOU ANIMATION */
-    .thank-you-box {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: var(--primary-soft);
-      border: 1px solid rgba(129, 140, 248, 0.6);
-      font-size: 12px;
-      display: none;
-    }
-
-    .thank-you-box.show {
-      display: block;
-      animation: popIn 0.5s ease-out forwards;
-    }
-
-    .thank-title {
-      font-weight: 700;
+    /* Thank you animation */
+    .thankyou {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 20;
+    }
+
+    .thankyou.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .thankyou-card {
+      background: #020617;
+      border-radius: 24px;
+      padding: 26px 24px 22px;
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pulse-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 999px;
+      margin: 0 auto 10px;
+      background: radial-gradient(circle at 30% 20%, #22c55e, #16a34a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      animation: pop 0.6s ease-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.4); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    .confetti {
+      position: absolute;
+      inset: -40px;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(244, 114, 182, 0.9) 2px, transparent 0),
+        radial-gradient(circle at 80% 30%, rgba(56, 189, 248, 0.9) 2px, transparent 0),
+        radial-gradient(circle at 30% 80%, rgba(251, 191, 36, 0.9) 2px, transparent 0);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      animation: float 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(40px); }
+    }
+
+    .thankyou-title {
+      font-size: 20px;
+      font-weight: 800;
       margin-bottom: 4px;
     }
 
-    .thank-emoji {
-      font-size: 16px;
-      animation: bounce 0.8s infinite alternate;
-    }
-
-    .delivery-line {
-      margin-top: 2px;
-      color: var(--accent-strong);
-    }
-
-    .fade-small {
-      font-size: 11px;
+    .thankyou-text {
+      font-size: 13px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-bottom: 8px;
     }
 
-    @keyframes popIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+    .delivery-estimate {
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #e5e7eb;
     }
 
-    @keyframes bounce {
-      from {
-        transform: translateY(0);
-      }
-      to {
-        transform: translateY(-2px);
-      }
-    }
-
-    @media (max-width: 880px) {
-      .app-shell {
-        grid-template-columns: 1fr;
-      }
-      .left-panel {
-        border-right: none;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      }
-      body {
-        padding: 16px;
-      }
+    .thankyou-close {
+      margin-top: 6px;
+      font-size: 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: transparent;
+      color: #e5e7eb;
+      padding: 6px 14px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="app-shell">
-    <!-- LEFT SIDE -->
-    <section class="left-panel">
-      <div>
-        <div class="brand-row">
-          <div class="logo-wrap">
-            <div class="logo-circle">GZ</div>
-            <div>
-              <div class="logo-text-main">GamerZone Express</div>
-              <div class="logo-text-sub">Premium Game Delivery</div>
-            </div>
-          </div>
-          <div class="online-pill">
-            <span class="online-dot"></span>
-            Live orders tracking enabled
+  <div class="app">
+    <!-- LEFT PANEL -->
+    <section class="left">
+      <div class="logo-row">
+        <div class="logo">
+          <div class="logo-icon">GZ</div>
+          <div>
+            <div class="logo-text-main">GamerZone Express</div>
+            <div style="font-size:11px; color:#9ca3af;">Physical Game Delivery • India</div>
           </div>
         </div>
+        <div class="tag">Fast gaming delivery</div>
+      </div>
 
-        <h1 class="hero-title">
-          Get your favourite games<br />
-          <span>delivered to your setup.</span>
-        </h1>
-        <p class="hero-subtitle">
-          Choose from top titles or enter your own game, pick how you want it
-          delivered, and we’ll handle the rest. Feedback and ratings help us
-          level up your next order.
-        </p>
+      <div class="headline">
+        Bring your <span>favorite games</span><br/>
+        straight to your setup.
+      </div>
+      <p class="sub">
+        Order original PC & console titles on Blu-Ray Disc or USB installation drive.
+        Delivered safely to your door with live status updates.
+      </p>
 
-        <div class="perk-row">
-          <span class="perk-pill">✔ Genuine game copies</span>
-          <span class="perk-pill">🚚 Pan-India doorstep delivery</span>
-          <span class="perk-pill">⭐ Community-rated service</span>
+      <div class="points">
+        <div class="point">
+          <span class="point-bullet"></span>
+          <span>Cash-on-delivery available in major cities.</span>
         </div>
-
-        <div class="glow-strip">
-          <span class="glow-icon">🎮</span>
-          <span>“One-stop shop for all my PC and console games.” – Verified Gamer</span>
+        <div class="point">
+          <span class="point-bullet"></span>
+          <span>Scratch-free packaging & safe shipping.</span>
+        </div>
+        <div class="point">
+          <span class="point-bullet"></span>
+          <span>Free replacement if disc/drive is damaged in transit.</span>
         </div>
       </div>
 
-      <p class="footer-note">
-        Tip: After you place the order, you’ll instantly see a random estimated
-        delivery date (usually around 5 days) and a thank-you animation.
-      </p>
+      <div class="games-list">
+        <strong>Popular titles we ship daily:</strong><br/>
+        GTA V • FIFA 24 • Minecraft • Call of Duty: Warzone •
+        Red Dead Redemption 2 • Spider-Man Remastered • God of War • PUBG PC & more.
+      </div>
     </section>
 
-    <!-- RIGHT SIDE – FORM -->
-    <section class="right-panel">
-      <div class="card">
-        <header class="card-header">
-          <div class="card-title">Place your game order</div>
-          <div class="card-subtitle">
-            Select a title, delivery format, share feedback & rate us.
-          </div>
-        </header>
+    <!-- RIGHT PANEL -->
+    <section class="right">
+      <div class="glow-orb"></div>
+      <div class="form-card">
+        <h2 class="form-title">Place your game order</h2>
+        <p class="form-subtitle">Fill your details and we’ll prepare your delivery.</p>
 
-        <form id="orderForm">
-          <div class="field-group">
-            <div class="field">
-              <label for="gameSelect">Choose a game</label>
-              <select id="gameSelect" required>
-                <option value="">-- Select a game --</option>
-                <option>GTA V</option>
-                <option>FIFA 24</option>
-                <option>Call of Duty: Warzone</option>
-                <option>Minecraft</option>
-                <option>Red Dead Redemption 2</option>
-                <option>God of War</option>
-                <option>Spider-Man Remastered</option>
-                <option>PUBG PC</option>
+        <form id="order-form">
+          <div class="field-grid">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" type="text" required placeholder="Diva Iswar" />
+            </div>
+            <div>
+              <label for="city">City</label>
+              <input id="city" type="text" required placeholder="Chennai" />
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <div>
+              <label for="game">Choose your game</label>
+              <select id="game">
+                <option value="GTA V">GTA V</option>
+                <option value="FIFA 24">FIFA 24</option>
+                <option value="Minecraft">Minecraft</option>
+                <option value="Call of Duty: Warzone">Call of Duty: Warzone</option>
+                <option value="Red Dead Redemption 2">Red Dead Redemption 2</option>
+                <option value="Spider-Man Remastered">Spider-Man Remastered</option>
+                <option value="God of War">God of War</option>
+                <option value="PUBG PC">PUBG PC</option>
+                <option value="Other">Other (I’ll type it)</option>
               </select>
             </div>
-
-            <div class="field">
-              <label for="customGame">Or type your game (optional)</label>
-              <input id="customGame" type="text" placeholder="Eg: Elden Ring, Valorant" />
-            </div>
-
-            <div class="field">
-              <label>Delivery format</label>
-              <div class="delivery-options">
-                <button type="button" class="delivery-pill selected" data-value="Blu-Ray Disc">
-                  Blu-Ray Disc
-                </button>
-                <button type="button" class="delivery-pill" data-value="USB Drive Installation">
-                  USB Drive Installation
-                </button>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="feedback">Feedback for GamerZone Express</label>
-              <textarea id="feedback" placeholder="Tell us anything we should know…"></textarea>
-            </div>
-
-            <div class="field">
-              <label>Rate your experience (stars)</label>
-              <div class="stars-row" id="starsRow">
-                <span class="star" data-value="1">★</span>
-                <span class="star" data-value="2">★</span>
-                <span class="star" data-value="3">★</span>
-                <span class="star" data-value="4">★</span>
-                <span class="star" data-value="5">★</span>
-              </div>
-              <div class="hint">Click to select 1–5 stars. Your rating is stored in our system.</div>
+            <div>
+              <label for="custom-game">If "Other", type game name</label>
+              <input id="custom-game" type="text" placeholder="Example: Elden Ring" />
             </div>
           </div>
 
-          <input type="hidden" id="deliveryType" value="Blu-Ray Disc" />
-          <input type="hidden" id="ratingValue" value="0" />
+          <div class="radio-row">
+            <span style="font-size:11px; color:#9ca3af;">Delivery format:</span>
+            <label class="radio-option">
+              <input type="radio" name="format" value="Blu-Ray Disc" checked />
+              Blu-Ray Disc
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="format" value="USB Drive Installation" />
+              USB Drive Installation
+            </label>
+          </div>
 
-          <div id="errorBox" class="error-text" style="display:none;"></div>
+          <div>
+            <label for="feedback">Any special request or feedback?</label>
+            <textarea id="feedback" placeholder="Example: Please pack as a gift, call before delivery..."></textarea>
+          </div>
+
+          <div class="stars-row">
+            <label>Rate your ordering experience (stars)</label>
+            <div class="stars" id="star-container">
+              <span class="star" data-value="1">★</span>
+              <span class="star" data-value="2">★</span>
+              <span class="star" data-value="3">★</span>
+              <span class="star" data-value="4">★</span>
+              <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="rating" value="0" />
+          </div>
 
           <div class="submit-row">
-            <button type="submit" class="btn-submit">Place order & save to database</button>
-            <div class="hint">
-              Your order details, feedback, and rating will be stored securely and only
-              visible to admin.
+            <button type="submit" class="btn-submit">
+              Place order
+              <span class="icon">🚚</span>
+            </button>
+            <div class="note">
+              Your details are used only for this delivery.
+              Order summary is stored for admin in Excel.
             </div>
-          </div>
-
-          <div id="thankBox" class="thank-you-box">
-            <div class="thank-title">
-              <span class="thank-emoji">✨</span>
-              <span>Thanks for buying from GamerZone Express!</span>
-            </div>
-            <div class="delivery-line" id="deliveryLine"></div>
-            <div class="fade-small">We’ve saved your order and rating in our system.</div>
           </div>
         </form>
       </div>
     </section>
   </div>
 
+  <!-- Thank you overlay -->
+  <div class="thankyou" id="thankyou">
+    <div class="thankyou-card">
+      <div class="confetti"></div>
+      <div class="pulse-circle">🎮</div>
+      <div class="thankyou-title">Thanks for buying!</div>
+      <div class="thankyou-text">
+        Your GamerZone Express order has been received.
+      </div>
+      <div class="delivery-estimate" id="delivery-estimate">
+        Estimated delivery: 5 days
+      </div>
+      <button class="thankyou-close" id="close-thankyou">
+        Close
+      </button>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("orderForm");
-      const deliveryButtons = document.querySelectorAll(".delivery-pill");
-      const deliveryTypeInput = document.getElementById("deliveryType");
-      const ratingInput = document.getElementById("ratingValue");
+      const form = document.getElementById("order-form");
       const stars = document.querySelectorAll(".star");
-      const thankBox = document.getElementById("thankBox");
-      const deliveryLine = document.getElementById("deliveryLine");
-      const errorBox = document.getElementById("errorBox");
+      const ratingInput = document.getElementById("rating");
+      const thankyou = document.getElementById("thankyou");
+      const deliveryEstimate = document.getElementById("delivery-estimate");
+      const closeThankyou = document.getElementById("close-thankyou");
 
-      // Delivery format selection
-      deliveryButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          deliveryButtons.forEach((b) => b.classList.remove("selected"));
-          btn.classList.add("selected");
-          deliveryTypeInput.value = btn.getAttribute("data-value");
-        });
-      });
-
-      // Star rating selection
-      stars.forEach((star) => {
+      // STAR RATING LOGIC
+      stars.forEach(star => {
         star.addEventListener("click", () => {
-          const value = parseInt(star.getAttribute("data-value"), 10);
-          ratingInput.value = value;
-          stars.forEach((s) => {
-            const v = parseInt(s.getAttribute("data-value"), 10);
-            if (v <= value) {
-              s.classList.add("active");
-            } else {
-              s.classList.remove("active");
-            }
+          const val = parseInt(star.dataset.value, 10);
+          ratingInput.value = val;
+          stars.forEach(s => {
+            s.classList.toggle("active", parseInt(s.dataset.value, 10) <= val);
           });
         });
       });
 
-      function getRandomEstimatedDelivery() {
-        // random between 3 and 7 days (around 5)
-        const days = Math.floor(Math.random() * 5) + 3; // 3–7
-        const now = new Date();
-        const eta = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
-        const dateStr = eta.toLocaleDateString();
-        return { days, dateStr };
-      }
-
+      // FORM SUBMIT
       form.addEventListener("submit", (e) => {
         e.preventDefault();
-        errorBox.style.display = "none";
-        errorBox.textContent = "";
 
-        const gameSelect = document.getElementById("gameSelect");
-        const customGame = document.getElementById("customGame");
-        const feedback = document.getElementById("feedback");
+        const name = document.getElementById("name").value.trim();
+        const city = document.getElementById("city").value.trim();
+        const gameSelect = document.getElementById("game").value;
+        const customGame = document.getElementById("custom-game").value.trim();
+        const feedback = document.getElementById("feedback").value.trim();
+        const rating = parseInt(ratingInput.value, 10) || 0;
 
-        if (!gameSelect.value && !customGame.value.trim()) {
-          errorBox.textContent = "Please select a game or type one in the box.";
-          errorBox.style.display = "block";
-          return;
-        }
+        // final game name
+        const game = gameSelect === "Other" && customGame !== ""
+          ? customGame
+          : gameSelect;
 
-        if (ratingInput.value === "0") {
-          errorBox.textContent = "Please give us a star rating before placing your order.";
-          errorBox.style.display = "block";
-          return;
-        }
+        // delivery format
+        const formatRadio = document.querySelector('input[name="format"]:checked');
+        const format = formatRadio ? formatRadio.value : "Blu-Ray Disc";
 
-        const { days, dateStr } = getRandomEstimatedDelivery();
-
-        const payload = {
-          gameSelected: gameSelect.value || null,
-          customGame: customGame.value.trim() || null,
-          deliveryType: deliveryTypeInput.value,
-          feedback: feedback.value.trim() || null,
-          ratingStars: parseInt(ratingInput.value, 10),
-          estimatedDeliveryDays: days,
-          estimatedDeliveryDate: dateStr,
-          createdAt: new Date().toISOString()
+        const data = {
+          customerName: name,
+          city,
+          game,
+          gameChoiceDropdown: gameSelect,
+          deliveryFormat: format,
+          feedback,
+          ratingStars: rating,
+          orderedAt: new Date().toISOString()
         };
 
+        // send to backend -> Excel
         fetch("/save-data", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
+          body: JSON.stringify(data),
         })
-          .then((res) => res.json())
-          .then((response) => {
-            // Show animated thank-you box
-            deliveryLine.textContent =
-              "Estimated delivery: about " +
-              days +
-              " day(s), around " +
-              dateStr +
-              ".";
-            thankBox.classList.add("show");
-            alert(response.message || "Order saved successfully!");
-            // Optionally reset some fields
-            // form.reset(); ratingInput.value = 0; stars.forEach(s => s.classList.remove("active"));
+          .then(res => res.json())
+          .then(response => {
+            // random delivery days between 3 and 7
+            const days = Math.floor(Math.random() * 5) + 3;
+            deliveryEstimate.textContent = `Estimated delivery: ${days} day${days > 1 ? "s" : ""}`;
+            thankyou.classList.add("show");
           })
-          .catch((err) => {
-            console.error("Error:", err);
-            errorBox.textContent =
-              "Something went wrong while saving your order. Please try again.";
-            errorBox.style.display = "block";
+          .catch(err => {
+            console.error("Error saving data:", err);
+            alert("Something went wrong while saving your order.");
           });
+      });
+
+      // close thank you overlay
+      closeThankyou.addEventListener("click", () => {
+        thankyou.classList.remove("show");
+      });
+
+      // close on background click
+      thankyou.addEventListener("click", (e) => {
+        if (e.target === thankyou) {
+          thankyou.classList.remove("show");
+        }
       });
     });
   </script>
 </body>
 </html>
->>>>>>> 89cc6e5ca174e0e4b21f42023fa1c83355cb9a1e
