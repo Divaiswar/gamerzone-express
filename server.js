@@ -9,7 +9,7 @@ app.use(express.static(__dirname));
 
 // When someone visits the site → show index.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, "Index.html"));
 });
 
 // API to receive orders (button will send here)
@@ -23,3 +23,4 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
