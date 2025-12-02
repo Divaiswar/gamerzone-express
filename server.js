@@ -1,40 +1,25 @@
-const express = require("express");
-const fs = require("fs");
-const XLSX = require("xlsx");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 const app = express();
-const PORT = 3000;
 
-// middleware to read JSON
 app.use(express.json());
-app.use(express.static(__dirname)); // Serve index.html
 
-app.post("/save-data", (req, res) => {
-  const filePath = path.join(__dirname, "database.xlsx");
+// Serve index.html + related files
+app.use(express.static(__dirname));
 
-  let workbook;
-  let worksheet;
-
-  if (fs.existsSync(filePath)) {
-    workbook = XLSX.readFile(filePath);
-    worksheet = workbook.Sheets["Data"];
-    var data = XLSX.utils.sheet_to_json(worksheet);
-  } else {
-    workbook = XLSX.utils.book_new();
-    worksheet = XLSX.utils.json_to_sheet([]);
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
-    var data = [];
-  }
-
-  data.push(req.body);
-  worksheet = XLSX.utils.json_to_sheet(data);
-  workbook.Sheets["Data"] = worksheet;
-
-  XLSX.writeFile(workbook, filePath);
-
-  res.json({ message: "Data saved successfully!" });
+// When someone visits the site → show index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// API to receive orders (button will send here)
+app.post('/save-order', (req, res) => {
+    console.log("Order data received:", req.body);
+    res.json({ message: "Order placed successfully 🚚🎮" });
+});
+
+// Render uses this port automatically
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
