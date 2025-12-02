@@ -1,35 +1,18 @@
 {
-<<<<<<< HEAD
   "name": "gamerzone-express",
   "version": "1.0.0",
   "description": "Gaming delivery website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
-=======
-  "name": "insurance-project",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> 89cc6e5ca174e0e4b21f42023fa1c83355cb9a1e
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^4.18.2",
+    "express": "^5.1.0",
     "mongoose": "^7.6.1",
     "xlsx": "^0.18.5"
   }
 }
-
-=======
-    "express": "^5.1.0",
-    "xlsx": "^0.18.5"
-  }
-}
->>>>>>> 89cc6e5ca174e0e4b21f42023fa1c83355cb9a1e
